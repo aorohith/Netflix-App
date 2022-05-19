@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class ScreenDownloads extends StatelessWidget {
-  const ScreenDownloads({Key? key}) : super(key: key);
+class ScreenNewAndHot extends StatelessWidget {
+  const ScreenNewAndHot({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Center(
-          child: Text("Home Page"),
+          child: Text("Screen New And Hot"),
         ),
       ),
     );
