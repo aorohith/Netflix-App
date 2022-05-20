@@ -12,29 +12,31 @@ class AppbarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        kWidth,
-        Text(
-          appBarTitle,
-          style: GoogleFonts.montserrat(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Row(
+        children: [
+          Text(
+            appBarTitle,
+            style: GoogleFonts.montserrat(
+              fontSize: 30,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        Spacer(),
-        Icon(
-          Icons.cast,
-          color: kWhiteColor,
-        ),
-        kWidth,
-        Container(
-          height: 25,
-          width: 25,
-          color: kBlackColor,
-        ),
-        kWidth,
-      ],
+          Spacer(),
+          Icon(
+            Icons.cast,
+            color: kWhiteColor,
+          ),
+          kWidth,
+          Container(
+            height: 25,
+            width: 25,
+            color: Colors.blue,
+          ),
+          kWidth,
+        ],
+      ),
     );
   }
 }

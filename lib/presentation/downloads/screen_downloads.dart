@@ -8,6 +8,36 @@ import 'package:netflix/presentation/widgets/app_bar_widget.dart';
 class ScreenDownloads extends StatelessWidget {
   ScreenDownloads({Key? key}) : super(key: key);
 
+  final _widgetList = [
+    const _SmartDownloads(),
+    _Section2(),
+    const _Section3(),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50),
+        child: AppbarWidget(appBarTitle: "Downloads"),
+      ),
+      body: ListView.separated(
+        padding: EdgeInsets.all(10),
+        itemBuilder: (ctx, index) => _widgetList[index],
+        separatorBuilder: (ctx, index) => SizedBox(
+          height: 20,
+        ),
+        itemCount: _widgetList.length,
+      ),
+    );
+  }
+}
+
+//########...Section 2...########
+
+class _Section2 extends StatelessWidget {
+  _Section2({Key? key}) : super(key: key);
+
   final imageList = [
     'assets/images/img1.jpg',
     'assets/images/img2.jpeg',
@@ -17,94 +47,118 @@ class ScreenDownloads extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50),
-        child: AppbarWidget(appBarTitle: "Downloads"),
-      ),
-      body: ListView(
-        children: [
-          const _SmartDownloads(),
-          const Text(
-            "Introdusing Downloads for you",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: kWhiteColor,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+    return Column(
+      children: [
+        const Text(
+          "Introdusing Downloads for you",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: kWhiteColor,
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
-          kHeight,
-          Text(
-            textAlign: TextAlign.center,
-            "We'll doawnload a personalized selection of\nmovies and shows for you, so there's always\nsomething to watch on your device.",
-            style: TextStyle(
-              color: Colors.grey,
-              fontSize: 16,
-            ),
+        ),
+        kHeight,
+        Text(
+          textAlign: TextAlign.center,
+          "We'll doawnload a personalized selection of\nmovies and shows for you, so there's always\nsomething to watch on your device.",
+          style: TextStyle(
+            color: Colors.grey,
+            fontSize: 16,
           ),
-          kHeight,
-          SizedBox(
-            height: size.width,
-            width: size.width,
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                CircleAvatar(
-                  radius: size.width * 0.37,
-                  backgroundColor: Colors.grey.withOpacity(0.5),
+        ),
+        kHeight,
+        SizedBox(
+          height: size.width,
+          width: size.width,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              CircleAvatar(
+                radius: size.width * 0.37,
+                backgroundColor: Colors.grey.withOpacity(0.5),
+              ),
+              DownloadsImgaeWidget(
+                imagePath: imageList[0],
+                height: 0.5,
+                margin: EdgeInsets.only(
+                  left: 150,
+                  bottom: 20,
                 ),
-                DownloadsImgaeWidget(
-                  imagePath: imageList[0],
-                  height: 0.5,
-                  margin: EdgeInsets.only(
-                    left: 150,
-                    bottom: 40,
-                  ),
-                  angle: 20,
+                angle: 20,
+              ),
+              DownloadsImgaeWidget(
+                imagePath: imageList[1],
+                height: 0.5,
+                margin: EdgeInsets.only(
+                  right: 150,
+                  bottom: 20,
                 ),
-                DownloadsImgaeWidget(
-                  imagePath: imageList[1],
-                  height: 0.5,
-                  margin: EdgeInsets.only(
-                    right: 150,
-                    bottom: 40,
-                  ),
-                  angle: -20,
-                ),
-                DownloadsImgaeWidget(
-                  height: 0.58,
-                  imagePath: imageList[2],
-                  margin: EdgeInsets.only(left: 0),
-                )
-              ],
-            ),
+                angle: -20,
+              ),
+              DownloadsImgaeWidget(
+                height: 0.58,
+                imagePath: imageList[2],
+                margin: EdgeInsets.only(top: 15),
+              )
+            ],
           ),
-          MaterialButton(
+        ),
+      ],
+    );
+  }
+}
+
+//########...Section 3...########
+
+class _Section3 extends StatelessWidget {
+  const _Section3({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    return Column(
+      children: [
+        SizedBox(
+          width: size.width * .85,
+          child: MaterialButton(
             onPressed: () {},
             color: kBtnColorBlue,
-            child: Text(
-              "Set Up",
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: kBtnColorWhite,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.symmetric(vertical: 11),
+              child: Text(
+                "Set Up",
+                style: TextStyle(
+                  fontSize: 19,
+                  fontWeight: FontWeight.bold,
+                  color: kBtnColorWhite,
+                ),
               ),
             ),
           ),
-          MaterialButton(
-            onPressed: () {},
-            color: kBtnColorWhite,
+        ),
+        kHeight,
+        MaterialButton(
+          onPressed: () {},
+          color: kBtnColorWhite,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(vertical: 11),
             child: Text(
               "See What You Can Download",
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 19,
                 fontWeight: FontWeight.bold,
               ),
             ),
-          )
-        ],
-      ),
+          ),
+        )
+      ],
     );
   }
 }
@@ -122,7 +176,12 @@ class _SmartDownloads extends StatelessWidget {
           Icons.settings,
           color: kWhiteColor,
         ),
-        Text("Smart Downloads")
+        Text(
+          "Smart Downloads",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+          ),
+        )
       ],
     );
   }
