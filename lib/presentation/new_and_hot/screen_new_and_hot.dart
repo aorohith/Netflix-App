@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constants.dart';
+import 'package:netflix/presentation/home/widgets/custom_icon_widget.dart';
+import 'package:netflix/presentation/new_and_hot/widgets/comming_soon_widget.dart';
+import 'package:netflix/presentation/new_and_hot/widgets/everyones_watching.dart';
+import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class ScreenNewAndHot extends StatelessWidget {
   const ScreenNewAndHot({Key? key}) : super(key: key);
@@ -22,23 +26,23 @@ class ScreenNewAndHot extends StatelessWidget {
               ),
             ),
             actions: [
-              Icon(
+              const Icon(
                 Icons.cast,
                 color: kWhiteColor,
               ),
-              kWidth,
+              kWidth10,
               Container(
                 height: 25,
                 width: 25,
                 color: Colors.blue,
               ),
-              kWidth,
+              kWidth10,
             ],
             bottom: TabBar(
                 labelColor: kBlackColor,
                 unselectedLabelColor: kWhiteColor,
                 isScrollable: true,
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
@@ -46,7 +50,7 @@ class ScreenNewAndHot extends StatelessWidget {
                   color: kWhiteColor,
                   borderRadius: kRadius30,
                 ),
-                tabs: [
+                tabs: const [
                   Tab(
                     text: "🍿️ Comming Soon",
                   ),
@@ -57,7 +61,7 @@ class ScreenNewAndHot extends StatelessWidget {
           ),
         ),
         body: TabBarView(children: [
-          _buildCommingSoon(context),
+          _buildCommingSoon(),
           _buildEveryonesWatching(),
         ]),
       ),
@@ -68,78 +72,19 @@ class ScreenNewAndHot extends StatelessWidget {
     return Text(name);
   }
 
-  Widget _buildCommingSoon(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    return ListView(
-      children: [
-        kHeight,
-        Row(
-          children: [
-            SizedBox(
-              width: 50,
-              height: 500,
-              child: Column(
-                children: const [
-                  Text(
-                    "FEB",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    "11",
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              width: size.width - 50,
-              height: 500,
-              child: Column(
-                children: [
-                  Stack(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        height: 200,
-                        child: Image.asset(
-                          "assets/images/img4.jpg",
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 10,
-                        right: 10,
-                        child: CircleAvatar(
-                          backgroundColor: Colors.black.withOpacity(0.5),
-                          radius: 22,
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.volume_off,
-                              size: 22,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-      ],
+  Widget _buildCommingSoon() {
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) => const CommingSoonWidget(),
+      shrinkWrap: true,
     );
   }
 
   Widget _buildEveryonesWatching() {
-    return SizedBox();
+    return ListView.builder(
+      itemCount: 10,
+      itemBuilder: (context, index) => EveryonesWatchingWidget(),
+    );
   }
 }
+

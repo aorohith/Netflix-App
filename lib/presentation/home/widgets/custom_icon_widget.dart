@@ -3,11 +3,16 @@ import 'package:netflix/core/colors/colors.dart';
 
 class CustomButtonWidget extends StatelessWidget {
   final icon;
-  final title;
+  final String title;
+  final double iconSize;
+  final double fontSize;
+
   const CustomButtonWidget({
     Key? key,
     required this.icon,
     required this.title,
+    this.iconSize=25,
+    this.fontSize=18,
   }) : super(key: key);
 
   @override
@@ -17,12 +22,12 @@ class CustomButtonWidget extends StatelessWidget {
         Icon(
           icon,
           color: kWhiteColor,
-          size: 25,
+          size: iconSize,
         ),
         Text(
           title,
           style: TextStyle(
-            fontSize: 18,
+            fontSize: fontSize,
           ),
         ),
       ],
