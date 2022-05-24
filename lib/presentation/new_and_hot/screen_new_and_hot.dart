@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constants.dart';
+import 'package:netflix/infrastructure/apis.dart';
+import 'package:netflix/presentation/downloads/models/data_model/data_model.dart';
 import 'package:netflix/presentation/home/widgets/custom_icon_widget.dart';
 import 'package:netflix/presentation/new_and_hot/widgets/comming_soon_widget.dart';
 import 'package:netflix/presentation/new_and_hot/widgets/everyones_watching.dart';
@@ -73,11 +75,27 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   Widget _buildCommingSoon() {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) => const CommingSoonWidget(),
-      shrinkWrap: true,
-    );
+    return FutureBuilder(
+        future: MovieDB().getAllMovies(),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<DataModel>> commingSoon) {
+          if (commingSoon.data == null) {
+            return Center(
+              child: SizedBox(
+                height: 50,
+                width: 50,
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else {
+            return ListView.builder(
+              itemCount: 10,
+              itemBuilder: (context, index) =>
+                  CommingSoonWidget(commingSoon: commingSoon.data![index]),
+              shrinkWrap: true,
+            );
+          }
+        });
   }
 
   Widget _buildEveryonesWatching() {

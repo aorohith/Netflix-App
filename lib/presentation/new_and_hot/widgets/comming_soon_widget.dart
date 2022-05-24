@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constants.dart';
+import 'package:netflix/presentation/downloads/models/data_model/data_model.dart';
 import 'package:netflix/presentation/home/widgets/custom_icon_widget.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class CommingSoonWidget extends StatelessWidget {
-  const CommingSoonWidget({
-    Key? key,
-  }) : super(key: key);
+  DataModel commingSoon;
+  CommingSoonWidget({Key? key, required this.commingSoon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +42,11 @@ class CommingSoonWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              VideoWidget(),
+              VideoWidget(), //for image
               kHeight20,
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const Text(
-                    "SPIDERMAN",
-                    style: TextStyle(
-                      letterSpacing: -2,
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
                   // const Spacer(),
                   Wrap(
                     children: const [
@@ -78,26 +70,39 @@ class CommingSoonWidget extends StatelessWidget {
                   )
                 ],
               ),
+              Row(children: [
+                Text(
+                    commingSoon.title!,
+                    style: TextStyle(
+                      letterSpacing: -2,
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+              ],),
               kHeight,
               const Text("Comming on Friday"),
               kHeight,
               Text(
-                "Spiderman 3",
+                commingSoon.originalTitle!,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               kHeight,
-              Text(
-                '''Landing the lead in the school musical is a dream come true for Jodl,until the pressure sends her confidence--- and her relationship--- into a tallspin''',
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey,
-                ),
-              ),
-              kHeight50,
+              RichText(
+                maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  text: TextSpan(
+                    text: commingSoon.overview!,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                    ),
+                  )),
+              kHeight,
               Row(
                 children: [],
               )
