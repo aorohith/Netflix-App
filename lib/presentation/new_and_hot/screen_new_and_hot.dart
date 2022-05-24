@@ -87,4 +87,3 @@ class ScreenNewAndHot extends StatelessWidget {
     );
   }
 }
-

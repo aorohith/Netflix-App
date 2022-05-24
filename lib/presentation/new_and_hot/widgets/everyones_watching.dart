@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/home/widgets/custom_icon_widget.dart';

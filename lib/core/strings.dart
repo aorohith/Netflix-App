@@ -1,1 +1,1 @@
-const kBaseUrl = 'https://developers.themoviedb.org/3';
+const kBaseUrl = 'https://image.tmdb.org/t/p/original/';

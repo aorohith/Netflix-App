@@ -45,7 +45,8 @@ class VideoListItem extends StatelessWidget {
                         backgroundImage: AssetImage('assets/images/img2.jpeg'),
                       ),
                     ),
-                    VideoActionsWidget(icon: Icons.emoji_emotions, title: "LOL"),
+                    VideoActionsWidget(
+                        icon: Icons.emoji_emotions, title: "LOL"),
                     VideoActionsWidget(icon: Icons.add, title: "My List"),
                     VideoActionsWidget(icon: Icons.share, title: "Share"),
                     VideoActionsWidget(icon: Icons.play_arrow, title: "Play"),
@@ -75,8 +76,18 @@ class VideoActionsWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Column(
         children: [
-          Icon(icon,color: Colors.white, size: 30,),
-          Text(title, style: TextStyle(color: kWhiteColor, fontSize: 16,),),
+          Icon(
+            icon,
+            color: Colors.white,
+            size: 30,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+              color: kWhiteColor,
+              fontSize: 16,
+            ),
+          ),
         ],
       ),
     );

@@ -11,10 +11,10 @@ class BottomNavWidget extends StatelessWidget {
         valueListenable: indexChangeNotifier,
         builder: (context, int newIndex, _) {
           return BottomNavigationBar(
-            onTap: (index){
+            onTap: (index) {
               indexChangeNotifier.value = index;
             },
-            currentIndex: indexChangeNotifier.value  ,
+            currentIndex: indexChangeNotifier.value,
             backgroundColor: Colors.black,
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.grey,

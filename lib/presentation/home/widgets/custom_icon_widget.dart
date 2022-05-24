@@ -11,8 +11,8 @@ class CustomButtonWidget extends StatelessWidget {
     Key? key,
     required this.icon,
     required this.title,
-    this.iconSize=25,
-    this.fontSize=18,
+    this.iconSize = 25,
+    this.fontSize = 18,
   }) : super(key: key);
 
   @override

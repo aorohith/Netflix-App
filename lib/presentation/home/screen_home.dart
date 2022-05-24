@@ -17,6 +17,14 @@ class ScreenHome extends StatelessWidget {
         valueListenable: scrollNotifier,
         builder: (context, status, _) {
           return Scaffold(
+            appBar: AppBar(actions: [
+              IconButton(
+                onPressed: () async {
+                  
+                },
+                icon: const Icon(Icons.add),
+              )
+            ]),
             body: NotificationListener<UserScrollNotification>(
               onNotification: (notification) {
                 final ScrollDirection direction = notification.direction;
@@ -44,7 +52,7 @@ class ScreenHome extends StatelessWidget {
                   ),
                   scrollNotifier.value
                       ? AnimatedContainer(
-                        duration: Duration(milliseconds: 1000),
+                          duration: Duration(milliseconds: 1000),
                           width: double.infinity,
                           height: 70,
                           color: Colors.black.withOpacity(0.3),

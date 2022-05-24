@@ -28,7 +28,7 @@ class BackgroundCard extends StatelessWidget {
           left: 0,
           right: 0,
           child: Padding(
-            padding: const EdgeInsets.only(bottom:10.0),
+            padding: const EdgeInsets.only(bottom: 10.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -50,27 +50,26 @@ class BackgroundCard extends StatelessWidget {
   }
 }
 
-
 TextButton _playButton() {
-    return TextButton.icon(
-      style: ButtonStyle(
-        backgroundColor: MaterialStateProperty.all(kWhiteColor),
-      ),
-      onPressed: () {},
-      icon: const Icon(
-        Icons.play_arrow,
-        size: 30,
-        color: kBlackColor,
-      ),
-      label: const Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
-        child: Text(
-          "Play",
-          style: TextStyle(
-            fontSize: 25,
-            color: kBlackColor,
-          ),
+  return TextButton.icon(
+    style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.all(kWhiteColor),
+    ),
+    onPressed: () {},
+    icon: const Icon(
+      Icons.play_arrow,
+      size: 30,
+      color: kBlackColor,
+    ),
+    label: const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: Text(
+        "Play",
+        style: TextStyle(
+          fontSize: 25,
+          color: kBlackColor,
         ),
       ),
-    );
-  }
+    ),
+  );
+}

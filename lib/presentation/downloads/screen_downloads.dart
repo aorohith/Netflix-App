@@ -3,11 +3,20 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constants.dart';
+import 'package:netflix/core/strings.dart';
+import 'package:netflix/infrastructure/apis.dart';
+import 'package:netflix/presentation/downloads/models/all_data_model.dart/all_data_model.dart';
+import 'package:netflix/presentation/downloads/models/data_model/data_model.dart';
 import 'package:netflix/presentation/widgets/app_bar_widget.dart';
 
-class ScreenDownloads extends StatelessWidget {
+class ScreenDownloads extends StatefulWidget {
   ScreenDownloads({Key? key}) : super(key: key);
 
+  @override
+  State<ScreenDownloads> createState() => _ScreenDownloadsState();
+}
+
+class _ScreenDownloadsState extends State<ScreenDownloads> {
   final _widgetList = [
     const _SmartDownloads(),
     _Section2(),
@@ -35,17 +44,22 @@ class ScreenDownloads extends StatelessWidget {
 
 //########...Section 2...########
 
-class _Section2 extends StatelessWidget {
+class _Section2 extends StatefulWidget {
   _Section2({Key? key}) : super(key: key);
 
-  final imageList = [
-    'assets/images/img1.jpg',
-    'assets/images/img2.jpeg',
-    'assets/images/img3.jpeg',
-  ];
+  @override
+  State<_Section2> createState() => _Section2State();
+}
+
+class _Section2State extends State<_Section2> {
+  final List<DataModel> dataList = [];
 
   @override
   Widget build(BuildContext context) {
+    // WidgetsBinding.instance.addPostFrameCallback((_) async {
+
+    // });
+    print(dataList);
     final size = MediaQuery.of(context).size;
     return Column(
       children: [
@@ -71,38 +85,55 @@ class _Section2 extends StatelessWidget {
         SizedBox(
           height: size.width,
           width: size.width,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              CircleAvatar(
-                radius: size.width * 0.37,
-                backgroundColor: Colors.grey.withOpacity(0.5),
-              ),
-              DownloadsImgaeWidget(
-                imagePath: imageList[0],
-                height: 0.5,
-                margin: EdgeInsets.only(
-                  left: 150,
-                  bottom: 20,
-                ),
-                angle: 20,
-              ),
-              DownloadsImgaeWidget(
-                imagePath: imageList[1],
-                height: 0.5,
-                margin: EdgeInsets.only(
-                  right: 150,
-                  bottom: 20,
-                ),
-                angle: -20,
-              ),
-              DownloadsImgaeWidget(
-                height: 0.58,
-                imagePath: imageList[2],
-                margin: EdgeInsets.only(top: 15),
-              )
-            ],
-          ),
+          child: FutureBuilder(
+              future: MovieDB().getAllMovies(),
+              builder: (BuildContext context, AsyncSnapshot dataListData) {
+                if (dataListData.data == null) {
+                  return Center(
+                    child: SizedBox(
+                      height: 50,
+                      width: 50,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1.0,
+                      ),
+                    ),
+                  );
+                } else {
+                  return Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: size.width * 0.37,
+                        backgroundColor: Colors.grey.withOpacity(0.5),
+                      ),
+                      DownloadsImgaeWidget(
+                        imagePath:
+                            '$kBaseUrl${dataListData.data[0].posterPath}',
+                        height: 0.5,
+                        margin: EdgeInsets.only(
+                          left: 150,
+                          bottom: 20,
+                        ),
+                        angle: 20,
+                      ),
+                      DownloadsImgaeWidget(
+                        imagePath: '$kBaseUrl${dataListData.data[1].posterPath}',
+                        height: 0.5,
+                        margin: EdgeInsets.only(
+                          right: 150,
+                          bottom: 20,
+                        ),
+                        angle: -20,
+                      ),
+                      DownloadsImgaeWidget(
+                        height: 0.58,
+                        imagePath: '$kBaseUrl${dataListData.data[2].posterPath}',
+                        margin: EdgeInsets.only(top: 15),
+                      )
+                    ],
+                  );
+                }
+              }),
         ),
       ],
     );
@@ -187,7 +218,7 @@ class _SmartDownloads extends StatelessWidget {
   }
 }
 
-class DownloadsImgaeWidget extends StatelessWidget {
+class DownloadsImgaeWidget extends StatefulWidget {
   DownloadsImgaeWidget({
     Key? key,
     required this.imagePath,
@@ -202,19 +233,24 @@ class DownloadsImgaeWidget extends StatelessWidget {
   final double height;
 
   @override
+  State<DownloadsImgaeWidget> createState() => _DownloadsImgaeWidgetState();
+}
+
+class _DownloadsImgaeWidgetState extends State<DownloadsImgaeWidget> {
+  @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Transform.rotate(
-      angle: angle * pi / 180,
+      angle: widget.angle * pi / 180,
       child: Container(
-        margin: margin,
+        margin: widget.margin,
         width: size.width * 0.387,
-        height: size.width * height,
+        height: size.width * widget.height,
         decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(
-                imagePath,
+              image: NetworkImage(
+                widget.imagePath,
               ),
             ),
             color: kBlackColor,
