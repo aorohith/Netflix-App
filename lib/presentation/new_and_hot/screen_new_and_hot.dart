@@ -116,7 +116,7 @@ class ScreenNewAndHot extends StatelessWidget {
               itemCount: everyonesData.data!.length,
               itemBuilder: (context, index) => EveryonesWatchingWidget(
                   everyData: everyonesData.data![index]),
-            );
+            );  
           }
         });
   }

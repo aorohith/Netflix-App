@@ -48,7 +48,7 @@ class MovieDB extends ApiCalls {
   }
 
       @override
-  Future getAction() async{
+  Future<List<DataModel>> getAction() async{
     final result = await http.get(Uri.parse(
         "https://api.themoviedb.org/3/movie/{movie_id}/lists?api_key=f88b478026037712e036ac5db7fe2109&language=en-US&page=1"));
     Map<String, dynamic> map = json.decode(result.body);
