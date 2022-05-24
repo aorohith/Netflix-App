@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 abstract class ApiCalls {
   Future getAllMovies();
   Future getPopular();
+  Future getTrending();
 }
 
 class MovieDB extends ApiCalls {
@@ -27,15 +28,31 @@ class MovieDB extends ApiCalls {
     final data = AllDataModel.fromJson(map);
     return data.results;
   }
-}
+  
+  @override
+  Future<List<DataModel>> getTrending() async{
+    final result = await http.get(Uri.parse(
+        "https://api.themoviedb.org/3/account/{account_id}/rated/movies?api_key=f88b478026037712e036ac5db7fe2109&language=en-US&sort_by=created_at.asc&page=1"));
+    Map<String, dynamic> map = json.decode(result.body);
+    final data = AllDataModel.fromJson(map);
+    return data.results;
+  }
 
-Future<List<DataModel>> dataFromServer(String callFrom) async {
-  final result;
-      result = await http.get(Uri.parse(
-          "https://api.themoviedb.org/3/movie/popular?api_key=f88b478026037712e036ac5db7fe2109&language=en-US&page=1"));
-      Map<String, dynamic> map = json.decode(result.body);
-      final data = AllDataModel.fromJson(map);
-      return data.results;
+    @override
+  Future<List<DataModel>> getTVShow() async{
+    final result = await http.get(Uri.parse(
+        "https://api.themoviedb.org/3/movie/upcoming?api_key=f88b478026037712e036ac5db7fe2109&language=en-US&page=1"));
+    Map<String, dynamic> map = json.decode(result.body);
+    final data = AllDataModel.fromJson(map);
+    return data.results;
+  }
 
-    
+      @override
+  Future getAction() async{
+    final result = await http.get(Uri.parse(
+        "https://api.themoviedb.org/3/movie/{movie_id}/lists?api_key=f88b478026037712e036ac5db7fe2109&language=en-US&page=1"));
+    Map<String, dynamic> map = json.decode(result.body);
+    final data = AllDataModel.fromJson(map);
+    return data.results;
+  }
 }

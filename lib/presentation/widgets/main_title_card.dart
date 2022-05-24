@@ -24,7 +24,7 @@ class MainTitleCard extends StatelessWidget {
         LimitedBox(
           maxHeight: 200,
           child: FutureBuilder(
-              future: MovieDB().getPopular(),
+              future: getData(mainTitle),
               builder: (BuildContext context,
                   AsyncSnapshot<List<DataModel>> snapshot) {
                 if (snapshot.data == null) {
@@ -46,5 +46,31 @@ class MainTitleCard extends StatelessWidget {
         ),
       ],
     );
+  }
+  Future<List<DataModel>> getData(String callFrom) async{
+    switch (callFrom) {
+      case 'Popular on Netflix':
+         return await MovieDB().getAllMovies();
+        
+      case 'Trending Now':
+         return await MovieDB().getPopular();
+        
+      case 'New Releases':
+         return await MovieDB().getTrending();
+
+      case 'TV Show Based on Books':
+         return await MovieDB().getTVShow();
+
+      case 'US Mivies':
+         return await MovieDB().getAllMovies();
+
+         case 'US Mivies':
+         return await MovieDB().getTrending();
+
+         case 'Hindi Movies and TV':
+         return await MovieDB().getPopular();
+      default:
+      return [];
+    }
   }
 }

@@ -3,11 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:netflix/core/constants.dart';
+import 'package:netflix/core/strings.dart';
 
 class NumberCard extends StatelessWidget {
   final int index;
+  final String? path;
   const NumberCard({
     Key? key,
+    required this.path,
     required this.index,
   }) : super(key: key);
 
@@ -25,9 +28,9 @@ class NumberCard extends StatelessWidget {
             height: 225,
             decoration: BoxDecoration(
               borderRadius: kRadius10,
-              image: const DecorationImage(
-                image: AssetImage(
-                  "assets/images/img3.jpeg",
+              image: DecorationImage(
+                image: NetworkImage(
+                  "$kBaseUrl$path",
                 ),
               ),
             ),

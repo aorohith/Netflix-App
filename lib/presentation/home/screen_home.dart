@@ -38,16 +38,14 @@ class ScreenHome extends StatelessWidget {
               child: Stack(
                 children: [
                   ListView(
-                    children: const [
+                    children: [
                       BackgroundCard(),
                       MainTitleCard(mainTitle: "Popular on Netflix"),
                       MainTitleCard(mainTitle: "Trending Now"),
                       MainTitleCard(mainTitle: "TV Show Based on Books"),
-                      MainTitleCard(mainTitle: "New Releases"),
                       NumberTitleCard(),
                       MainTitleCard(mainTitle: "US Mivies"),
                       MainTitleCard(mainTitle: "Hindi Movies and TV"),
-                      MainTitleCard(mainTitle: "International TV Shows"),
                     ],
                   ),
                   scrollNotifier.value
