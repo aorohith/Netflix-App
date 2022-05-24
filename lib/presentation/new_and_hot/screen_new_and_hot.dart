@@ -99,9 +99,25 @@ class ScreenNewAndHot extends StatelessWidget {
   }
 
   Widget _buildEveryonesWatching() {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, index) => EveryonesWatchingWidget(),
-    );
+    return FutureBuilder(
+        future: MovieDB().getTVShow(),
+        builder: (BuildContext context,
+            AsyncSnapshot<List<DataModel>> everyonesData) {
+          if (everyonesData.data == null) {
+            return Center(
+              child: SizedBox(
+                height: 50,
+                width: 50,
+                child: CircularProgressIndicator(),
+              ),
+            );
+          } else {
+            return ListView.builder(
+              itemCount: everyonesData.data!.length,
+              itemBuilder: (context, index) => EveryonesWatchingWidget(
+                  everyData: everyonesData.data![index]),
+            );
+          }
+        });
   }
 }

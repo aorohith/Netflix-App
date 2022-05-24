@@ -1,20 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constants.dart';
+import 'package:netflix/core/strings.dart';
+import 'package:netflix/presentation/downloads/models/data_model/data_model.dart';
 import 'package:netflix/presentation/home/widgets/custom_icon_widget.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
-  const EveryonesWatchingWidget({
+  DataModel everyData;
+   EveryonesWatchingWidget({
     Key? key,
+    required this.everyData,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         kHeight,
         Text(
-          "Friends",
+          everyData.title!,
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
@@ -22,7 +27,7 @@ class EveryonesWatchingWidget extends StatelessWidget {
         ),
         kHeight,
         Text(
-          '''This hit sitcom follows the merry misadventures of six 20-something pals as they navigate the pitfalls of work,life and love in 1990s Manhattan.''',
+          everyData.overview!,
           style: TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.bold,
@@ -30,7 +35,7 @@ class EveryonesWatchingWidget extends StatelessWidget {
           ),
         ),
         kHeight50,
-        VideoWidget(),
+        VideoWidget(image: "$kBaseUrl${everyData.posterPath}",),
         kHeight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
