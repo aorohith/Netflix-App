@@ -63,7 +63,7 @@ class ScreenNewAndHot extends StatelessWidget {
           ),
         ),
         body: TabBarView(children: [
-          _buildCommingSoon(),
+          _buildCommingSoon(context),
           _buildEveryonesWatching(),
         ]),
       ),
@@ -74,9 +74,9 @@ class ScreenNewAndHot extends StatelessWidget {
     return Text(name);
   }
 
-  Widget _buildCommingSoon() {
+  Widget _buildCommingSoon(BuildContext context) {
     return FutureBuilder(
-        future: MovieDB().getAllMovies(),
+        future: MovieDB().getPopular(),
         builder:
             (BuildContext context, AsyncSnapshot<List<DataModel>> commingSoon) {
           if (commingSoon.data == null) {
@@ -89,7 +89,7 @@ class ScreenNewAndHot extends StatelessWidget {
             );
           } else {
             return ListView.builder(
-              itemCount: 10,
+              itemCount: commingSoon.data!.length,
               itemBuilder: (context, index) =>
                   CommingSoonWidget(commingSoon: commingSoon.data![index]),
               shrinkWrap: true,

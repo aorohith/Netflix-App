@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
 class VideoWidget extends StatelessWidget {
-  const VideoWidget({
+  var image;
+
+   VideoWidget({
     Key? key,
+    this.image,
   }) : super(key: key);
 
   @override
@@ -12,8 +15,8 @@ class VideoWidget extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           height: 200,
-          child: Image.asset(
-            "assets/images/img4.jpg",
+          child: Image.network(
+            image,
             fit: BoxFit.cover,
           ),
         ),

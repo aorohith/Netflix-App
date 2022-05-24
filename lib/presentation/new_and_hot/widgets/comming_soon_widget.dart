@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:netflix/core/constants.dart';
+import 'package:netflix/core/strings.dart';
 import 'package:netflix/presentation/downloads/models/data_model/data_model.dart';
 import 'package:netflix/presentation/home/widgets/custom_icon_widget.dart';
 import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class CommingSoonWidget extends StatelessWidget {
   DataModel commingSoon;
-  CommingSoonWidget({Key? key, required this.commingSoon}) : super(key: key);
+  CommingSoonWidget({
+    Key? key,
+    required this.commingSoon,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,8 @@ class CommingSoonWidget extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              VideoWidget(), //for image
+              VideoWidget(
+                  image: '$kBaseUrl${commingSoon.posterPath}'), //for image
               kHeight20,
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -70,8 +75,9 @@ class CommingSoonWidget extends StatelessWidget {
                   )
                 ],
               ),
-              Row(children: [
-                Text(
+              Row(
+                children: [
+                  Text(
                     commingSoon.title!,
                     style: TextStyle(
                       letterSpacing: -2,
@@ -79,7 +85,8 @@ class CommingSoonWidget extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-              ],),
+                ],
+              ),
               kHeight,
               const Text("Comming on Friday"),
               kHeight,
@@ -92,7 +99,7 @@ class CommingSoonWidget extends StatelessWidget {
               ),
               kHeight,
               RichText(
-                maxLines: 2,
+                  maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   text: TextSpan(
                     text: commingSoon.overview!,
