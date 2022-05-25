@@ -8,6 +8,8 @@ abstract class ApiCalls {
   Future getAllMovies();
   Future getPopular();
   Future getTrending();
+  Future search(String value);
+
 }
 
 class MovieDB extends ApiCalls {
@@ -55,4 +57,15 @@ class MovieDB extends ApiCalls {
     final data = AllDataModel.fromJson(map);
     return data.results;
   }
+
+       @override
+  Future<List<DataModel>> search(String value) async{
+    final result = await http.get(Uri.parse(
+        "https://api.themoviedb.org/3/search/movie?api_key=f88b478026037712e036ac5db7fe2109&language=en-US&query=$value&page=1&include_adult=false"));
+    Map<String, dynamic> map = json.decode(result.body);
+    final data = AllDataModel.fromJson(map);
+    return data.results;
+  }
+
+
 }

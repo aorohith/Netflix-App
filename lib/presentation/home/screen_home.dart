@@ -17,14 +17,6 @@ class ScreenHome extends StatelessWidget {
         valueListenable: scrollNotifier,
         builder: (context, status, _) {
           return Scaffold(
-            appBar: AppBar(actions: [
-              IconButton(
-                onPressed: () async {
-                  
-                },
-                icon: const Icon(Icons.add),
-              )
-            ]),
             body: NotificationListener<UserScrollNotification>(
               onNotification: (notification) {
                 final ScrollDirection direction = notification.direction;
