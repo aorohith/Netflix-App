@@ -84,6 +84,7 @@ class TopSearchItemTile extends StatelessWidget {
           ),
         ),
       ),
+      kWidth10,
       Expanded(
         child: Text(
           idleData.title!,

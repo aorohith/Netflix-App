@@ -11,7 +11,7 @@ class SearchInputWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return CupertinoSearchTextField(
       onSubmitted: (value) {
-        Navigator.pushReplacement(
+        Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) =>  SearchResultWidget(querry:value),
