@@ -37,7 +37,7 @@ class SearchResultWidget extends StatelessWidget {
                               child: CircularProgressIndicator(),
                             ),
                           );
-                        } else if (searchResult.data == []) {
+                        } else if (searchResult.data!.isEmpty) {
                           return Text(
                             "No match found",
                             style: TextStyle(
