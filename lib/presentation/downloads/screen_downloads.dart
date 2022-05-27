@@ -94,7 +94,6 @@ class _Section2State extends State<_Section2> {
                       height: 50,
                       width: 50,
                       child: CircularProgressIndicator(
-                        strokeWidth: 1.0,
                       ),
                     ),
                   );
