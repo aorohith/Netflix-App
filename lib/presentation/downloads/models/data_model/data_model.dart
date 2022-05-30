@@ -30,7 +30,7 @@ class DataModel {
 
   @JsonKey(name: 'id')
   int? id;
-  
+
   @JsonKey(name: 'media_type')
   String? mediaType;
 

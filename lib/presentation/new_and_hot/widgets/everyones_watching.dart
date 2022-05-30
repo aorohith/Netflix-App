@@ -7,7 +7,7 @@ import 'package:netflix/presentation/widgets/video_widget.dart';
 
 class EveryonesWatchingWidget extends StatelessWidget {
   DataModel everyData;
-   EveryonesWatchingWidget({
+  EveryonesWatchingWidget({
     Key? key,
     required this.everyData,
   }) : super(key: key);
@@ -35,7 +35,9 @@ class EveryonesWatchingWidget extends StatelessWidget {
           ),
         ),
         kHeight50,
-        VideoWidget(image: "$kBaseUrl${everyData.posterPath}",),
+        VideoWidget(
+          image: "$kBaseUrl${everyData.posterPath}",
+        ),
         kHeight,
         Row(
           mainAxisAlignment: MainAxisAlignment.end,

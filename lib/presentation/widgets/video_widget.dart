@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class VideoWidget extends StatelessWidget {
   var image;
 
-   VideoWidget({
+  VideoWidget({
     Key? key,
     this.image,
   }) : super(key: key);

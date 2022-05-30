@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix/presentation/search/widget/search_result.dart';
 
 class SearchInputWidget extends StatelessWidget {
-   SearchInputWidget({
+  SearchInputWidget({
     Key? key,
   }) : super(key: key);
 
@@ -14,7 +14,7 @@ class SearchInputWidget extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>  SearchResultWidget(querry:value),
+            builder: (context) => SearchResultWidget(querry: value),
           ),
         );
       },

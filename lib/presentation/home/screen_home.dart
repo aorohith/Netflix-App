@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:netflix/core/colors/colors.dart';
 import 'package:netflix/core/constants.dart';
 import 'package:netflix/presentation/home/widgets/background_card.dart';
+import 'package:netflix/presentation/home/widgets/category_screen.dart';
 import 'package:netflix/presentation/home/widgets/number_title_card.dart';
 import 'package:netflix/presentation/widgets/main_title_card.dart';
 
@@ -32,19 +33,19 @@ class ScreenHome extends StatelessWidget {
                   ListView(
                     children: [
                       BackgroundCard(),
-                      MainTitleCard(mainTitle: "Popular on Netflix"),
-                      MainTitleCard(mainTitle: "Trending Now"),
-                      MainTitleCard(mainTitle: "TV Show Based on Books"),
-                      NumberTitleCard(),
-                      MainTitleCard(mainTitle: "US Mivies"),
-                      MainTitleCard(mainTitle: "Hindi Movies and TV"),
+                      const MainTitleCard(mainTitle: "Popular on Netflix"),
+                      const MainTitleCard(mainTitle: "Trending Now"),
+                      const MainTitleCard(mainTitle: "TV Show Based on Books"),
+                      const NumberTitleCard(),
+                      const MainTitleCard(mainTitle: "US Mivies"),
+                      const MainTitleCard(mainTitle: "Hindi Movies and TV"),
                     ],
                   ),
                   scrollNotifier.value
                       ? AnimatedContainer(
-                          duration: Duration(milliseconds: 1000),
+                          duration: const Duration(milliseconds: 1000),
                           width: double.infinity,
-                          height: 70,
+                          height: 80,
                           color: Colors.black.withOpacity(0.3),
                           child: Column(children: [
                             Row(
@@ -54,8 +55,8 @@ class ScreenHome extends StatelessWidget {
                                   width: 50,
                                   height: 50,
                                 ),
-                                Spacer(),
-                                Icon(
+                                const Spacer(),
+                                const Icon(
                                   Icons.cast,
                                   color: kWhiteColor,
                                 ),
@@ -68,26 +69,44 @@ class ScreenHome extends StatelessWidget {
                                 kWidth10,
                               ],
                             ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                Text(
-                                  "TV Shows",
-                                  style: kHomeTitleText,
-                                ),
-                                Text(
-                                  "Movies",
-                                  style: kHomeTitleText,
-                                ),
-                                Text(
-                                  "Categories",
-                                  style: kHomeTitleText,
-                                ),
-                              ],
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const Categories()));
+                              },
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  const Text(
+                                    "TV Shows",
+                                    style: kHomeTitleText,
+                                  ),
+                                  const Text(
+                                    "Movies",
+                                    style: kHomeTitleText,
+                                  ),
+                                  Row(
+                                    children: const [
+                                      Text(
+                                        "Categories",
+                                        style: kHomeTitleText,
+                                      ),
+                                      Icon(
+                                        Icons.arrow_drop_down,
+                                        color: Colors.white,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
                             )
                           ]),
                         )
-                      : SizedBox(),
+                      : const SizedBox(),
                 ],
               ),
             ),

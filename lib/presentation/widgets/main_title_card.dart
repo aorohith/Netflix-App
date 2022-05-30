@@ -47,30 +47,31 @@ class MainTitleCard extends StatelessWidget {
       ],
     );
   }
-  Future<List<DataModel>> getData(String callFrom) async{
+
+  Future<List<DataModel>> getData(String callFrom) async {
     switch (callFrom) {
       case 'Popular on Netflix':
-         return await MovieDB().getAllMovies();
-        
+        return await MovieDB().getAllMovies();
+
       case 'Trending Now':
-         return await MovieDB().getPopular();
-        
+        return await MovieDB().getPopular();
+
       case 'New Releases':
-         return await MovieDB().getTrending();
+        return await MovieDB().getTrending();
 
       case 'TV Show Based on Books':
-         return await MovieDB().getTVShow();
+        return await MovieDB().getTVShow();
 
       case 'US Mivies':
-         return await MovieDB().getAllMovies();
+        return await MovieDB().getAllMovies();
 
-         case 'US Mivies':
-         return await MovieDB().getTrending();
+      case 'US Mivies':
+        return await MovieDB().getTrending();
 
-         case 'Hindi Movies and TV':
-         return await MovieDB().getPopular();
+      case 'Hindi Movies and TV':
+        return await MovieDB().getPopular();
       default:
-      return [];
+        return [];
     }
   }
 }

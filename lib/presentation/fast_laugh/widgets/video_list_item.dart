@@ -144,11 +144,12 @@ class _FastVideoPlayerState extends State<FastVideoPlayer> {
         width: double.infinity,
         child: _videoController.value.isInitialized
             ? AspectRatio(
-              aspectRatio: _videoController.value.aspectRatio,
+                aspectRatio: _videoController.value.aspectRatio,
                 child: VideoPlayer(_videoController),
               )
             : Center(child: CircularProgressIndicator()));
   }
+
   @override
   void dispose() {
     _videoController.dispose();

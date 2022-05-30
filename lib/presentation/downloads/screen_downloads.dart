@@ -93,8 +93,7 @@ class _Section2State extends State<_Section2> {
                     child: SizedBox(
                       height: 50,
                       width: 50,
-                      child: CircularProgressIndicator(
-                      ),
+                      child: CircularProgressIndicator(),
                     ),
                   );
                 } else {
@@ -116,7 +115,8 @@ class _Section2State extends State<_Section2> {
                         angle: 20,
                       ),
                       DownloadsImgaeWidget(
-                        imagePath: '$kBaseUrl${dataListData.data[1].posterPath}',
+                        imagePath:
+                            '$kBaseUrl${dataListData.data[1].posterPath}',
                         height: 0.5,
                         margin: EdgeInsets.only(
                           right: 150,
@@ -126,7 +126,8 @@ class _Section2State extends State<_Section2> {
                       ),
                       DownloadsImgaeWidget(
                         height: 0.58,
-                        imagePath: '$kBaseUrl${dataListData.data[2].posterPath}',
+                        imagePath:
+                            '$kBaseUrl${dataListData.data[2].posterPath}',
                         margin: EdgeInsets.only(top: 15),
                       )
                     ],
