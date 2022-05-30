@@ -50,7 +50,7 @@ class MainTitleCard extends StatelessWidget {
 
   Future<List<DataModel>> getData(String callFrom) async {
     switch (callFrom) {
-      case 'Popular on Netflix':
+      case 'Continue Watching':
         return await MovieDB().getAllMovies();
 
       case 'Trending Now':
@@ -64,9 +64,6 @@ class MainTitleCard extends StatelessWidget {
 
       case 'US Mivies':
         return await MovieDB().getAllMovies();
-
-      case 'US Mivies':
-        return await MovieDB().getTrending();
 
       case 'Hindi Movies and TV':
         return await MovieDB().getPopular();

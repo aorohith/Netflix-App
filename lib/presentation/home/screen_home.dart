@@ -7,6 +7,8 @@ import 'package:netflix/presentation/home/widgets/category_screen.dart';
 import 'package:netflix/presentation/home/widgets/number_title_card.dart';
 import 'package:netflix/presentation/widgets/main_title_card.dart';
 
+import '../widgets/continue_watching.dart';
+
 ValueNotifier<bool> scrollNotifier = ValueNotifier(true);
 
 class ScreenHome extends StatelessWidget {
@@ -33,7 +35,7 @@ class ScreenHome extends StatelessWidget {
                   ListView(
                     children: [
                       BackgroundCard(),
-                      const MainTitleCard(mainTitle: "Popular on Netflix"),
+                       ContinueWatchingScreen(mainTitle: "Continue Watching"),
                       const MainTitleCard(mainTitle: "Trending Now"),
                       const MainTitleCard(mainTitle: "TV Show Based on Books"),
                       const NumberTitleCard(),

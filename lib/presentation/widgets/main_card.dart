@@ -6,6 +6,7 @@ class MainCardWidget extends StatelessWidget {
   final url;
   const MainCardWidget({
     Key? key,
+    
     this.url,
   }) : super(key: key);
 
