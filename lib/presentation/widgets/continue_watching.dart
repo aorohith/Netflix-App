@@ -67,7 +67,7 @@ class ContinueWatchingScreen extends StatelessWidget {
                             child: Column(
                               children: [
                                 const LinearProgressIndicator(
-                                  value: 50.0,
+                                  value: 0.5,
                                   color: Colors.grey,
                                   valueColor: AlwaysStoppedAnimation<Color>(
                                       Colors.blue),
