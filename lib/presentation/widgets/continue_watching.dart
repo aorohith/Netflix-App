@@ -53,10 +53,28 @@ class ContinueWatchingScreen extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Icon(
-                          Icons.play_circle,
-                          color: Colors.white.withOpacity(0.8),
-                          size: 60,
+                        Stack(
+                          children: [
+                            Container(
+                              width: 50,
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(50.0)),
+                                border: Border.all(
+                                  color: Colors.white,
+                                ),
+                              ),
+                              child: const CircleAvatar(
+                                backgroundColor: Colors.black38,
+                                child: Icon(
+                                  Icons.play_arrow_rounded,
+                                  size: 50,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                         Positioned(
                           top: 150,
@@ -73,7 +91,7 @@ class ContinueWatchingScreen extends StatelessWidget {
                                       Colors.blue),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.all( 8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
